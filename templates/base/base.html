@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>
+        {% block title %}
+
+        {% endblock title %}
+    </title>
+</head>
+<style>
+    .options {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        position: relative;
+
+    }
+
+    .options a {
+        text-decoration: none;
+        /* color: black; */
+    }
+
+    .options li {
+        list-style-type: none;
+        padding: 5px 6px;
+        margin: 1rem 5px;
+    }
+
+    main {
+        margin: 1rem auto;
+    }
+</style>
+
+<body>
+    <nav class="nav justify-content-center">
+        <ul>
+            <div class="options">
+                <h3><a class="btn btn-ouline-dark btn-lg" href="{% url 'main:list_invoice' %}">SMS Sender</a></h3>
+                <li><a class="btn btn-success btn-sm" href="{% url 'main:create_invoice' %}">Create Invoice</a></li>
+                <li><a class="btn btn-success btn-sm" href="{% url 'main:create_from_csv_upload' %}">Upload CSV</a></li>
+                <li><a class="btn btn-info btn-sm" href="">Login</a></li>
+                <li><a class="btn btn-danger btn-sm" href="">Logout</a></li>
+            </div>
+        </ul>
+    </nav>
+    <hr>
+    {% block content %}
+
+    {% endblock content %}
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,7 @@
+.env
+db.sqlite3
+**/__pycahce__/
+.gitignore
+**migrations
+data.csv
+create_csv.py

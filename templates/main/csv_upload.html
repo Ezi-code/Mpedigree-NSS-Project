@@ -1,0 +1,22 @@
+{% extends "../base/base.html" %}
+
+{% block title %}
+  Upload CSV
+{% endblock title %}
+
+{% block content %}
+  <center>
+    <form action="{% url 'main:create_from_csv_upload' %}" method="post"  enctype="multipart/form-data">
+        
+        {% csrf_token %}
+    {% csrf_token %}
+
+        <h5>Upload CSV File</h5>
+        <hr style="width: 40%;">
+        <p>
+            <input class="m-3" type="file" name="csv_file" id="csv_file" accept=".csv">
+        </p>    
+        <input type="submit" value="Upload CSV" class="btn btn-dark" style="margin-top: 10px;">
+    </form>
+  </center>
+{% endblock content %}
