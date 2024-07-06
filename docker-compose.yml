@@ -1,0 +1,7 @@
+version: '4.31.1'
+services:
+  django:
+    image: invoice-app:0.0.1
+    build: .
+    ports:
+      - "8000:8000"
