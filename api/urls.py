@@ -5,4 +5,5 @@ app_name = "api"
 
 urlpatterns = [
     path("list-invoice/", views.ListInvoiceView.as_view(), name="list_invoce"),
+    path("create-invoice/", views.CreateInvoiceView.as_view(), name="create_invoice"),
 ]

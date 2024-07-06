@@ -8,13 +8,17 @@ import uuid
 
 class Invoice(models.Model):
     invoice_code = models.CharField(
-        max_length=150, blank=False, null=False, unique=True
+        max_length=150, blank=False, null=False, unique=True, db_index=True
     )
-    number_of_items = models.IntegerField(default=None, blank=False, null=False)
-    description = models.TextField(blank=False, null=False)
-    recipient = models.CharField(max_length=150)
-    creation_date = models.DateField(default=timezone.now)
-    expiry_date = models.DateField(blank=False, null=False, default=timezone.now)
+    number_of_items = models.IntegerField(
+        default=None, blank=False, null=False, db_index=True
+    )
+    description = models.TextField(blank=False, null=False, db_index=True)
+    recipient = models.CharField(max_length=150, db_index=True)
+    creation_date = models.DateField(default=timezone.now, db_index=True)
+    expiry_date = models.DateField(
+        blank=False, null=False, default=timezone.now, db_index=True
+    )
 
 
 @receiver(pre_save, sender=Invoice)
