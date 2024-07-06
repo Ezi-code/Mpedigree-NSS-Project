@@ -8,7 +8,7 @@ InvoiceApp is a Django project that allows users to create invoices through form
    - thte code is in the master branch of the repo, not the main branch.
 
 ```shell
-git clone https://github.com/your-username/InvoiceApp.git
+git clone https://github.com/Ezi-code/Mpedigree-NSS-Project.git
 ```
 
 2. Navigate to the project directory:
