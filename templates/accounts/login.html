@@ -1,0 +1,32 @@
+{% extends '../base/base.html' %}
+
+{% block title %}
+{% endblock title %}
+
+
+{% block content %}
+<main>
+    <center>
+        <div style="width: 50%;">
+            <form action="{% url 'accounts:login_view'%}" method="post">
+                {% csrf_token %}
+
+                <h3>Login</h3>
+                <hr style="width: 40%;">
+
+                <p>
+                    <input class="form-control" type="email" name="username" id="" placeholder="example@mail.com"
+                        required>
+                </p>
+                <p>
+                    <input class="form-control" type="password" name="password" id="" placeholder="Password...">
+                </p>
+                <p>
+                    <input class="btn btn-success btn-sm" type="submit" value="Login">
+                </p>
+            </form>
+        </div>
+
+    </center>
+</main>
+{% endblock content%}

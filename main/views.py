@@ -9,30 +9,32 @@ from .forms import InvoceForm
 from .models import Invoice
 import csv
 from django.db.models import Q
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-class CreateInvoiceView(CreateView):
+
+class CreateInvoiceView(LoginRequiredMixin,CreateView):
     model = Invoice
     form_class = InvoceForm
     template_name = "main/invoice_form.html"
     success_url = reverse_lazy("main:list_invoice")
 
 
-class ListInvoiceView(ListView):
+class ListInvoiceView(LoginRequiredMixin,ListView):
     model = Invoice
     template_name = "main/invoice_list.html"
     context_object_name = "invoices"
     paginate_by = 12
 
 
-class UpdateInvoiceView(UpdateView):
+class UpdateInvoiceView(LoginRequiredMixin,UpdateView):
     model = Invoice
     form_class = InvoceForm
     template_name = "main/invoice_form.html"
     success_url = reverse_lazy("main:list_invoice")
 
 
-class CreateFromCSVUpload(View):
+class CreateFromCSVUpload(LoginRequiredMixin,View):
     def get(self, request):
         return render(request, "main/csv_upload.html")
 
@@ -54,7 +56,7 @@ class CreateFromCSVUpload(View):
         # return redirect("main:create_from_csv_upload")
 
 
-class SearchView(ListView):
+class SearchView(LoginRequiredMixin, ListView):
     template_name = "main/invoice_search.html"
     model = Invoice
     context_object_name = "results"

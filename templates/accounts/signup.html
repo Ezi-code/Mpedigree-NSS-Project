@@ -1,0 +1,35 @@
+{% extends '../base/base.html' %}
+
+{% block title %}
+{% endblock title %}
+
+
+{% block content %}
+<main>
+    <center>
+        <div style="width: 50%;">
+            <form action="{% url 'accounts:signup_view'%}" method="post">
+                {% csrf_token %}
+
+                <h3>Signup</h3>
+                <hr style="width: 40%;">
+                <p>
+                    <input class="form-control" type="text" name="username" id="" placeholder="Username..." required>
+                </p>
+                <p>
+                    <input class="form-control" type="email" name="email" id="" placeholder="Email" required>
+                </p>
+                <p>
+                    <input class="form-control" type="password" name="password" id="" placeholder="Password...">
+                </p>
+                <p>
+                    <input class="form-control" type="password" name="password2" id=""
+                        placeholder="Confirm Password...">
+                <p>
+                    <input class="btn btn-success btn-sm" type="submit" value="Signup">
+                </p>
+            </form>
+        </div>
+    </center>
+</main>
+{% endblock content%}

@@ -32,7 +32,7 @@ class User(AbstractUser):
     username = models.CharField(max_length=255, blank=False, null=False)
     email = models.EmailField(max_length=255, blank=False, null=False, unique=True)
     password = models.CharField(max_length=255, blank=False, null=False)
-    phone = models.CharField(max_length=255, blank=False, null=False, unique=True)
+    phone = models.CharField(max_length=255, blank=False, null=False)
     objects = UserManager()
 
     USERNAME_FIELD = "email"

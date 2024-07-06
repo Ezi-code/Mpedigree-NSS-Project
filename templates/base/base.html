@@ -40,15 +40,30 @@
     <nav class="nav justify-content-center">
         <ul>
             <div class="options">
+                {% if user.is_authenticated %}
                 <h3><a class="btn btn-ouline-dark btn-lg" href="{% url 'main:list_invoice' %}">Invoice App</a></h3>
                 <li><a class="btn btn-success btn-sm" href="{% url 'main:create_invoice' %}">Create Invoice</a></li>
                 <li><a class="btn btn-success btn-sm" href="{% url 'main:create_from_csv_upload' %}">Upload CSV</a></li>
-                <li><a class="btn btn-info btn-sm" href="">Login</a></li>
-                <li><a class="btn btn-danger btn-sm" href="">Logout</a></li>
+                <li><a class="btn btn-danger btn-sm" href="{% url 'accounts:logout_view' %}">Logout</a></li>
+                {% else %}
+                <li><a class="btn btn-info btn-sm" href="{% url 'accounts:login_view' %}">Login</a></li>
+                <li><a class="btn btn-danger btn-sm" href="{% url 'accounts:signup_view' %}">Sign Up</a></li>
+                {% endif %}
             </div>
         </ul>
     </nav>
     <hr>
+    <div>
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li class="alert-{{message.class}}">{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+
+
     {% block content %}
 
     {% endblock content %}
