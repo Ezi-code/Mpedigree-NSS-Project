@@ -1,7 +1,5 @@
 from rest_framework import serializers
-from main.forms import InvoceForm
 from main.models import Invoice
-import csv
 
 
 class CSVSerializer(serializers.Serializer):
@@ -9,13 +7,6 @@ class CSVSerializer(serializers.Serializer):
 
 
 class InvoiceSerializer(serializers.ModelSerializer):
-
-    recipient = serializers.CharField(read_only=True)
-    number_of_items = serializers.IntegerField(read_only=True)
-    description = serializers.CharField(read_only=True)
-    creation_date = serializers.DateField(read_only=True)
-    expiry_date = serializers.DateField(read_only=True)
-
     class Meta:
         model = Invoice
         fields = [
@@ -26,3 +17,4 @@ class InvoiceSerializer(serializers.ModelSerializer):
             "creation_date",
             "expiry_date",
         ]
+        read_only_filed = fields

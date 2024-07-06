@@ -1,0 +1,58 @@
+{% extends "../base/base.html" %}
+
+{% block title %}
+History
+{% endblock title %}
+
+{% block content %}
+<main>
+    <div style="width: 50%;">
+      <form class="d-flex m-4" role="search" method="get" action="{% url 'main:search_invoice' %}">
+        {% csrf_token %}
+        <input class="form-control me-2" type="search" placeholder="Search" name="q" required aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+     </form>
+    </div>
+    {% if results %}
+    <div class="row row-cols-1 row-cols-md-3 g-4 m-3">
+        {% for result in results %}
+          <div class="col">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">{{result.recipient}}</h5>
+                <p>Number of items: {{result.number_of_items}}</p>
+                <p class="card-text">{{result.description}}</p>
+                <p>
+                  <span>Date created: {{result.creation_date}}</span>
+                </p>
+                <p><span>Expiry date: {{result.expiry_date}}</span></p>
+                <p>
+                  <a href="{% url 'main:update_invoice' result.pk %}" class="btn btn-outline-success btn-sm">update</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+    <h5>Please enter a search term.</h5>
+    {% endif %}
+    <nav aria-label=" Page navigation ">
+        <div class="pagination justify-content-center">
+            <span class="step-links ">
+                {% if page_obj.has_previous %}
+                <a class="btn btn-dark btn-sm" href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+        
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+        
+                {% if page_obj.has_next %}
+                    <a class="btn btn-dark btn-sm" href="?page={{ page_obj.next_page_number }}">next</a>
+                {% endif %}
+            </span>
+        </div>
+      </nav>
+</main>
+{% endblock content %}

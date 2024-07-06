@@ -1,3 +1,4 @@
+from django.db.models.query import QuerySet
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views.generic import View
@@ -7,6 +8,7 @@ from django.views.generic.edit import CreateView
 from .forms import InvoceForm
 from .models import Invoice
 import csv
+from django.db.models import Q
 
 
 class CreateInvoiceView(CreateView):
@@ -20,7 +22,7 @@ class ListInvoiceView(ListView):
     model = Invoice
     template_name = "main/invoice_list.html"
     context_object_name = "invoices"
-    paginate_by = 10
+    paginate_by = 12
 
 
 class UpdateInvoiceView(UpdateView):
@@ -50,3 +52,19 @@ class CreateFromCSVUpload(View):
                 form.save()
         return redirect("main:list_invoice")
         # return redirect("main:create_from_csv_upload")
+
+
+class SearchView(ListView):
+    template_name = "main/invoice_search.html"
+    model = Invoice
+    context_object_name = "results"
+    paginate_by = 12
+
+    def get_queryset(self):
+        query = self.request.GET.get("q", "")
+        results = Invoice.objects.filter(
+            Q(recipient__icontains=query)
+            | Q(number_of_items__icontains=query)
+            | Q(description__icontains=query)
+        )
+        return results

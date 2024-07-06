@@ -16,21 +16,19 @@
 <style>
     .options {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         flex-wrap: wrap;
-        position: relative;
 
     }
 
     .options a {
         text-decoration: none;
-        /* color: black; */
     }
 
     .options li {
         list-style-type: none;
-        padding: 5px 6px;
-        margin: 1rem 5px;
+        padding: 0.5rem;
+        margin: 0.5rem 5px;
     }
 
     main {
@@ -42,7 +40,7 @@
     <nav class="nav justify-content-center">
         <ul>
             <div class="options">
-                <h3><a class="btn btn-ouline-dark btn-lg" href="{% url 'main:list_invoice' %}">SMS Sender</a></h3>
+                <h3><a class="btn btn-ouline-dark btn-lg" href="{% url 'main:list_invoice' %}">Invoice App</a></h3>
                 <li><a class="btn btn-success btn-sm" href="{% url 'main:create_invoice' %}">Create Invoice</a></li>
                 <li><a class="btn btn-success btn-sm" href="{% url 'main:create_from_csv_upload' %}">Upload CSV</a></li>
                 <li><a class="btn btn-info btn-sm" href="">Login</a></li>

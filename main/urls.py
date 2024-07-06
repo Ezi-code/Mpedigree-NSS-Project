@@ -17,4 +17,5 @@ urlpatterns = [
         views.CreateFromCSVUpload.as_view(),
         name="create_from_csv_upload",
     ),
+    path("search-invoice/", views.SearchView.as_view(), name="search_invoice"),
 ]
